@@ -1,4 +1,4 @@
-    \documentclass{article}
+\documentclass{article}
 
 \newif\ifanswers
 \answerstrue % comment out to hide answers
@@ -187,7 +187,11 @@ Prove that the naive-softmax loss (Equation \ref{naive-softmax}) is the same as 
 Your answer should be one line. You may describe your answer in words.
 \begin{shaded}
 \begin{answer}
-
+Remember from above, “The true empirical distribution y is a one-hot vector with a 1 for the true outside word o, and 0 everywhere else” \\
+Therefore $\forall w \neq o : - 0 \cdot \log (\hat{\bm y}_w)$ and we get
+\begin{equation}
+-\sum_{w \in \text{Vocab}} \bm y_w \log(\hat{\bm y}_w) = - 1 \cdot \log (\hat{\bm y}_o) = - \log (\hat{\bm y}_o)
+\end{equation}
 \end{answer}
 \end{shaded}
 
