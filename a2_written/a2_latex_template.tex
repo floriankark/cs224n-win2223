@@ -230,7 +230,14 @@ Hint: Consider the case where $\mathbf{u}_x = \alpha\mathbf{u}_y$ for some words
     = \sum_{w \in \text{Vocab}} (- \bm y_{w} \bm u_{w} + \hat{\bm y}_{w} \bm u_{w})
     = U^\top (- \bm y_{w} + \hat{\bm y}_{w})$
     \item
-    
+    The gradient is equal to zero when $\bm y = \hat{\bm y}$
+    \item
+    The first term in the gradient is the weighted sum of all the other word vectors in the vocabulary. The weights are determined by the probability of each word in the vocabulary given the current context. The second term is simply the current word vector. \\
+    When this gradient is subtracted from the current word vector, it has the effect of pushing the vector away from the other words in the vocabulary that are contextually similar to it and pulling it towards words that are dissimilar. The first term of the gradient improves the word vector by incorporating information about the surrounding context and adjusting the vector to be more representative of that context. The second term ensures that the vector is still anchored to the original word and doesn't stray too far from its original meaning. \\
+    Overall, subtracting the gradient of the naive softmax function from the word vector helps to improve the vector's representation of the current context while still preserving its core meaning.
+    \item
+    Firstly, in most cases, L2 normalization does not take away useful information for the downstream task and is common practice in most downstream applications. In sentiment analysis, the sentiment of a phrase is usually determined by the relative positions of the word embeddings in the feature space rather than their magnitudes. In such cases, L2 normalization can actually improve the discriminative power of the embeddings by making them more invariant to differences in scale. \\
+    However, there is a case where L2 normalization can take away useful information for the downstream task. Following the hint, consider the case where $\bm u_{x} = \alpha \bm u_{y}$ for some words $x \neq y$ and some scalar $\alpha$. In this case, L2 normalization would make the embeddings of these words indistinguishable from each other, as they would have the same direction and hence the same normalized form. This can be problematic for downstream tasks that require differentiation between words with similar directions but different magnitudes.
 \end{enumerate}
 \end{answer}
 \end{shaded}
