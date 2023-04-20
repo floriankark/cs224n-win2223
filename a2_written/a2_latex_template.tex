@@ -217,7 +217,21 @@ Hint: Consider the case where $\mathbf{u}_x = \alpha\mathbf{u}_y$ for some words
 
 \begin{shaded}
 \begin{answer}
-
+\begin{enumerate}[label=(\roman*)]
+    \item
+    $\frac{\partial \bm J(\bm v_c, o, \bm U)}{\partial \bm v_c} 
+    = \frac{\partial -\log P(O=o| C=c)}{\partial \bm v_c} 
+    = \frac{\partial -\log \frac{\exp(\bm u_{o}^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}}{\partial \bm v_c} 
+    = \frac{\partial -\log \exp(\bm u_{o}^\top \bm v_c) - \log \sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}{\partial \bm v_c} 
+    = \frac{\partial -\bm u_{o}^\top \bm v_c}{\partial \bm v_c} - \frac{\log \sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}{\partial \bm v_c} 
+    = -\bm u_{o} - \frac{1}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}\frac{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}{\partial \bm v_c} 
+    = -\bm u_{o} - \frac{1}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)} \sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c) \bm u_{w}
+    = \sum_{w \in \text{Vocab}} (- \bm y_{w} \bm u_{w} + \frac{\exp(\bm u_{o}^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)} \bm u_{w}) 
+    = \sum_{w \in \text{Vocab}} (- \bm y_{w} \bm u_{w} + \hat{\bm y}_{w} \bm u_{w})
+    = U^\top (- \bm y_{w} + \hat{\bm y}_{w})$
+    \item
+    
+\end{enumerate}
 \end{answer}
 \end{shaded}
 
