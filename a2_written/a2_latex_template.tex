@@ -306,7 +306,12 @@ Please compute the derivative of $\sigma(x)$ with respect to $x$, where $x$ is a
 
 \begin{shaded}
 \begin{answer}
-
+$\frac{\partial \sigma (x)}{\partial x} 
+= \frac{\partial}{\partial x} \frac{1}{1 + e^{-x}}
+= \frac{e^{-x}}{(1 + e^{-x})^2}
+= \frac{1 + e^{-x}}{(1 + e^{-x})^2} - \frac{1}{(1 + e^{-x})^2}
+= \frac{1}{1 + e^{-x}}(1-\frac{1}{1 + e^{-x}})
+= \sigma (x) (1-\sigma (x))$
 \end{answer}
 \end{shaded}
 
