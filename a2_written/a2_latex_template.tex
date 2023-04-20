@@ -249,13 +249,13 @@ Hint: Consider the case where $\mathbf{u}_x = \alpha\mathbf{u}_y$ for some words
 \begin{answer}
 $\frac{\partial \bm J(\bm v_c, o, \bm U)}{\partial \bm u_w} 
     = \frac{\partial -\bm u_{o}^\top v_c}{\partial \bm u_w} + \frac{\log \sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top v_c)}{\partial \bm u_w} 
-    = - \bm y_w v_c + \frac{\exp(\bm u_{w}^\top v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top v_c)} v_c$ \\
-    If $w = 0$: \\
-    $- v_c + \frac{\exp(\bm u_{w}^\top v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top v_c)} v_c = (P(O=o \mid C=c) -1) v_c$ \\
-    If $w \neq 0$: \\
-    $- 0 + \frac{\exp(\bm u_{w}^\top v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top v_c)} v_c = P(O=o \mid C=c) v_c$ \\
-    Therefore \\
-    $\frac{\partial \bm J(\bm v_c, o, \bm U)}{\partial \bm u_w} = (\hat{\bm y} - \bm y)^\top v_{c} $
+    = - \bm y_w v_c + \frac{\exp(\bm u_{w}^\top v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top v_c)} v_c 
+    = - \bm y_w v_c + \hat{\bm y}_w v_c 
+    = (\hat{\bm y}_w - \bm y_w)^\top v_{c} $ \\
+    where $y_w = \begin{cases}
+        1 & \text{if } w = o\\
+        0 & \text{else }
+    \end{cases}$
 \end{answer}
 \end{shaded}
 
