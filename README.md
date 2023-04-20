@@ -9,7 +9,7 @@ Reading papers is an important part of this course and crucial for completing th
 **Apr.18.2023**
 - watch [Lecture 1](https://youtu.be/rmVRLeJRkl4) and [Lecture 2](https://youtu.be/gqaHkPEZAew)
 - read [Efficient Estimation of Word Representations in Vector Space](http://arxiv.org/pdf/1301.3781.pdf) and [Distributed Representations of Words and Phrases and their Compositionality](http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)
-- finish assignment 1
+- finish [assignment 1](https://github.com/floriankark/cs224n-win2223/tree/main/a1)
 - go through [Python Review Session](https://colab.research.google.com/drive/1hxWtr98jXqRDs_rZLZcEmX_hUcpDLq6e?usp=sharing) ([slides](http://web.stanford.edu/class/cs224n/readings/cs224n-python-review-2023.pdf))
  
  **Apr.19.2023**
