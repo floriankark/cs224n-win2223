@@ -16,4 +16,5 @@ Reading papers is an important part of this course and crucial for completing th
 - read [GloVe: Global Vectors for Word Representation](https://nlp.stanford.edu/pubs/glove.pdf), [Improving Distributional Similarity with Lessons Learned from Word Embeddings](http://www.aclweb.org/anthology/Q15-1016) and [Evaluation methods for unsupervised word embeddings](http://www.aclweb.org/anthology/D15-1036)
 - watch [Lecture 3](https://youtu.be/X0Jw4kgaFlg) and [Lecture 4](https://youtu.be/PSGIodTN3KE)
 
+ **Apr.20.2023**
 - read [matrix calculus notes](http://web.stanford.edu/class/cs224n/readings/gradient-notes.pdf), [Review of differential calculus](http://web.stanford.edu/class/cs224n/readings/review-differential-calculus.pdf), [CS231n notes on network architectures](http://cs231n.github.io/neural-networks-1/), [CS231n notes on backprop](http://cs231n.github.io/optimization-2/), [Derivatives, Backpropagation, and Vectorization](http://cs231n.stanford.edu/handouts/derivatives.pdf) and [Learning Representations by Backpropagating Errors](http://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf)
