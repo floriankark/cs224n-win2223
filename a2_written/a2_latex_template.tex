@@ -264,7 +264,8 @@ $\frac{\partial \bm J(\bm v_c, o, \bm U)}{\partial \bm u_w}
 
 \begin{shaded}
 \begin{answer}
-
+From (c) we know $\frac{\partial \bm J(\bm v_c, o, \bm U)}{\partial \bm u_w} = (\hat{\bm y}_w - \bm y_w)^\top v_{c}$ for $w = 1,2,...,Vocab$ \\
+Therefore $(\hat{\bm y} - \bm y)^\top v_{c} = \frac{\partial \bm J(\bm v_c, o, \bm U)}{\partial \bm U} =$ $[\frac{\partial \bm J(\bm v_c, o, \bm U)}{\partial \bm u_1}$, $\frac{\partial \bm J(\bm v_c, o, \bm U)}{\partial \bm u_2}$, $\cdots$, $\frac{\partial \bm J(\bm v_c, o, \bm U)}{\partial \bm u_{|\text{Vocab}|}}]$
 \end{answer}
 \end{shaded}
 
@@ -286,7 +287,10 @@ Where $x$ is a scalar and $0<\alpha <1$, please compute the derivative of $f(x)$
 
 \begin{shaded}
 \begin{answer}
-
+$\frac{\partial f(x)}{\partial x} = \begin{cases}
+        1 & \text{if } x > 0\\
+        0 & \text{if } x < 0
+    \end{cases}$
 \end{answer}
 \end{shaded}
 
