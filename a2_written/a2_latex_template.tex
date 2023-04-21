@@ -410,7 +410,11 @@ Write your answers in terms of ${\frac{\partial \bm J(\bm v_c, w_{t+j}, \bm U)}{
 
 \begin{shaded}
 \begin{answer}
-
+\begin{enumerate}[label=(\roman*)]
+    \item ${\frac{\partial \bm J_{\textrm{skip-gram}}(\bm v_c, w_{t-m},\ldots w_{t+m}, \bm U)} {\partial \bm U}} = \sum_{\substack{-m \le j \le m \\ j \ne 0}} \frac{\partial \bm{J} (\bm{v_c},w_{t+j},\bm{U})}{\partial \bm{U}}$
+    \item ${\frac{\partial \bm J_{\textrm{skip-gram}}(\bm v_c, w_{t-m},\ldots w_{t+m}, \bm U)} {\partial \bm v_c}} = \sum_{\substack{-m \le j \le m \\ j \ne 0}} \frac{\partial \bm{J} (\bm{v_c},w_{t+j},\bm{U})}{\partial \bm{v_c}}$
+    \item ${\frac{\partial \bm J_{\textrm{skip-gram}}(\bm v_c, w_{t-m},\ldots w_{t+m}, \bm U)} {\partial \bm v_w}} = 0$ when $w \ne c$
+\end{enumerate}
 \end{answer}
 \end{shaded}
 
