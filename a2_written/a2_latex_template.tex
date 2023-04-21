@@ -188,10 +188,7 @@ Your answer should be one line. You may describe your answer in words.
 \begin{shaded}
 \begin{answer}
 Remember from above, “The true empirical distribution y is a one-hot vector with a 1 for the true outside word o, and 0 everywhere else” \\
-Therefore $\forall w \neq o : - 0 \cdot \log (\hat{\bm y}_w)$ and we get
-\begin{equation}
--\sum_{w \in \text{Vocab}} \bm y_w \log(\hat{\bm y}_w) = - 1 \cdot \log (\hat{\bm y}_o) = - \log (\hat{\bm y}_o)
-\end{equation}
+Therefore $\forall w \neq o : - 0 \cdot \log (\hat{\bm y}_w)$ and we get $ -\sum_{w \in \text{Vocab}} \bm y_w \log(\hat{\bm y}_w) = - 1 \cdot \log (\hat{\bm y}_o) = - \log (\hat{\bm y}_o) $
 \end{answer}
 \end{shaded}
 
@@ -222,9 +219,9 @@ Hint: Consider the case where $\mathbf{u}_x = \alpha\mathbf{u}_y$ for some words
     $\frac{\partial \bm J(\bm v_c, o, \bm U)}{\partial \bm v_c} 
     = \frac{\partial -\log P(O=o| C=c)}{\partial \bm v_c} 
     = \frac{\partial -\log \frac{\exp(\bm u_{o}^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}}{\partial \bm v_c} 
-    = \frac{\partial -\log \exp(\bm u_{o}^\top \bm v_c) - \log \sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}{\partial \bm v_c} 
+    = \frac{\partial -\log \exp(\bm u_{o}^\top \bm v_c) - \log \sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}{\partial \bm v_c} \\
     = \frac{\partial -\bm u_{o}^\top \bm v_c}{\partial \bm v_c} - \frac{\log \sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}{\partial \bm v_c} 
-    = -\bm u_{o} - \frac{1}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}\frac{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}{\partial \bm v_c} 
+    = -\bm u_{o} - \frac{1}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}\frac{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)}{\partial \bm v_c} \\
     = -\bm u_{o} - \frac{1}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)} \sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c) \bm u_{w}
     = \sum_{w \in \text{Vocab}} (- \bm y_{w} \bm u_{w} + \frac{\exp(\bm u_{o}^\top \bm v_c)}{\sum_{w \in \text{Vocab}} \exp(\bm u_{w}^\top \bm v_c)} \bm u_{w}) 
     = \sum_{w \in \text{Vocab}} (- \bm y_{w} \bm u_{w} + \hat{\bm y}_{w} \bm u_{w})
@@ -359,8 +356,13 @@ Caveat: So far we have looked at re-using quantities and approximating softmax w
         = (1-\sigma(\bm u_{w_s}^\top \bm v_c)) \bm v_c$
     \end{enumerate}
     \item
-    The embeddings of negative samples $\bm u_{w_s}$ are shared across multiple terms of the loss function. Therefore, we can reuse the partial derivative of the loss with respect to each negative sample's embedding across all the terms it appears in.
-    Therefore, we reuse the quantity $\begin{bmatrix} \bm{1}, -\bm{u}_{w_1}, \dots, -\bm{u}_{w_K} \end{bmatrix}$
+    The embeddings of negative samples $\bm u_{w_s}$ are shared across multiple terms of the loss function as $\sigma(\bm u_{w_s}^\top \bm v_c)) - 1$. Therefore, we can reuse the partial derivative of the loss with respect to each negative sample's embedding across all the terms it appears in. \\
+    Therefore, we reuse the quantity $ \sigma(\bm{U}^\top\bm{v_c}) - \bm{1} = \begin{bmatrix} 
+    \sigma(\bm{u_o}^\top \bm{v_c}) - 1 \\
+    \sigma(-\bm{u_{w_1}}^\top \bm{v_c}) - 1 \\
+    \vdots \\
+    \sigma(-\bm{u_{w_k}}^\top \bm{v_c}) - 1 \\
+    \end{bmatrix} $
     \item
     The negative sampling loss function is more efficient than the naive-softmax loss because it replaces the computation of the softmax function over the entire vocabulary with a smaller computation over a small number of negative samples, resulting in faster training and lower computational cost.
 \end{enumerate}
