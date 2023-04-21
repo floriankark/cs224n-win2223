@@ -381,7 +381,13 @@ Compute the partial derivative of $\bm J_{\text{neg-sample}}$ with respect to a 
 
 \begin{shaded}
 \begin{answer}
-
+\\
+Firstly breaking up the sum, we get \\
+$\bm J {\text{neg-sample} } (\bm{v_c}, o, \bm{U})  
+= -\log(\sigma(\bm{u_o}^\top \bm{v_c})) - \sum_{\substack{1\le j \le k \\ w_j = w_s}} \log(\sigma(-\bm{u_{w_i}}^\top \bm{v_c})) - \sum_{\substack{1\le j \le k \\ w_i \neq w_s}} \log(\sigma(-\bm{u_{w_j}}^\top \bm{v_c}))$ \\
+Now it is obvious that the first and last term vanish by taking the derivative and we are left with \\
+$\frac{\partial \bm J {\text{neg-sample} } (\bm{v_c}, o, \bm{U}) }{\partial \bm{u_{w_s}}} 
+= - \sum_{\substack{1 \le j \le k \\ w_j = w_s}} (\sigma(-\bm{u_{w_s}}^\top \bm{v_c}) - 1) \bm{v_c}$
 \end{answer}
 \end{shaded}
 
