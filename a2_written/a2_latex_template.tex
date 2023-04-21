@@ -359,6 +359,10 @@ Caveat: So far we have looked at re-using quantities and approximating softmax w
         = (1-\sigma(\bm u_{w_s}^\top \bm v_c)) \bm v_c$
     \end{enumerate}
     \item
+    The embeddings of negative samples $\bm u_{w_s}$ are shared across multiple terms of the loss function. Therefore, we can reuse the partial derivative of the loss with respect to each negative sample's embedding across all the terms it appears in.
+    Therefore, we reuse the quantity $\begin{bmatrix} \bm{1}, -\bm{u}_{w_1}, \dots, -\bm{u}_{w_K} \end{bmatrix}$
+    \item
+    The negative sampling loss function is more efficient than the naive-softmax loss because it replaces the computation of the softmax function over the entire vocabulary with a smaller computation over a small number of negative samples, resulting in faster training and lower computational cost.
 \end{enumerate}
 \end{answer}
 \end{shaded}
