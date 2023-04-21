@@ -337,7 +337,29 @@ Caveat: So far we have looked at re-using quantities and approximating softmax w
 
 \begin{shaded}
 \begin{answer}
-
+\begin{enumerate}[label=(\roman*)]
+    \item 
+    \begin{enumerate}[label=(\roman*)]
+        \item
+        $\frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm v_c} 
+        = \frac{\partial (-\log(\sigma(\bm u_o^\top \bm v_c)) - \sum_{s=1}^K \log(\sigma(-\bm u_{w_s}^\top \bm v_c)))}{\partial \bm v_c} \\
+        = \frac{\partial (-\log(\sigma(\bm u_o^\top \bm v_c))}{\partial \bm v_c} - \frac{\partial \sum_{s=1}^K \log(\sigma(-\bm u_{w_s}^\top \bm v_c)))}{\partial \bm v_c} \\
+        = - \frac{1}{\sigma(\bm u_o^\top \bm v_c)} \frac{\partial \sigma(\bm u_o^\top \bm v_c)}{\partial \bm v_c} - \sum_{s=1}^K \frac{1}{\sigma(-\bm u_{w_s}^\top \bm v_c)} \frac{\partial \sigma(-\bm u_{w_s}^\top \bm v_c))}{\partial \bm v_c} \\
+        = - \frac{1}{\sigma(\bm u_o^\top \bm v_c)} (\sigma(\bm u_o^\top \bm v_c) (1-\sigma(\bm u_o^\top \bm v_c))) \bm u_o + \sum_{s=1}^K \frac{1}{\sigma(-\bm u_{w_s}^\top \bm v_c)} (\sigma(-\bm u_{w_s}^\top \bm v_c) (1-\sigma(-\bm u_{w_s}^\top \bm v_c))) \bm u_{w_s} \\
+        = - (1-\sigma(\bm u_o^\top \bm v_c)) \bm u_o + \sum_{s=1}^K (1-\sigma(-\bm u_{w_s}^\top \bm v_c)) \bm u_{w_s}$ \\
+        \item 
+        similar to above, the second term can be dropped because $o\notin\{w_1, \dots, w_K\}$ \\
+        $\frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_o} 
+        = - \frac{1}{\sigma(\bm u_o^\top \bm v_c)} \frac{\partial \sigma(\bm u_o^\top \bm v_c)}{\partial \bm u_o} 
+        = - (1-\sigma(\bm u_o^\top \bm v_c)) \bm v_c$
+        \item
+        similar to (i) again, but the first term can be dropped \\
+        $\frac{\partial \bm J_{\text{neg-sample}}(\bm v_c, o, \bm U)}{\partial \bm u_{w_s}} 
+        = - \sum_{k=1}^K \frac{1}{\sigma(-\bm u_{w_k}^\top \bm v_c)} \frac{\partial \sigma(-\bm u_{w_k}^\top \bm v_c))}{\partial \bm u_{w_s}} \\
+        = (1-\sigma(\bm u_{w_s}^\top \bm v_c)) \bm v_c$
+    \end{enumerate}
+    \item
+\end{enumerate}
 \end{answer}
 \end{shaded}
 
