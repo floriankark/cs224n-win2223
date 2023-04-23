@@ -22,3 +22,12 @@ Reading papers is an important part of this course and crucial for completing th
 **Apr.21.2023**
 
 - finish [assignment 2 written](https://github.com/floriankark/cs224n-win2223/tree/main/a2_written)
+
+**Apr.22.2023**
+
+- read "additional readings" [A Latent Variable Model Approach to PMI-based Word Embeddings](http://aclweb.org/anthology/Q16-1028), [Linear Algebraic Structure of Word Senses, with Applications to Polysemy](https://transacl.org/ojs/index.php/tacl/article/viewFile/1346/320), [On the Dimensionality of Word Embedding](https://papers.nips.cc/paper/7368-on-the-dimensionality-of-word-embedding.pdf), [Yes you should understand backprop](https://medium.com/@karpathy/yes-you-should-understand-backprop-e2f06eab496b), [Natural Language Processing (Almost) from Scratch](http://www.jmlr.org/papers/volume12/collobert11a/collobert11a.pdf)
+
+**Apr.23.2023**
+
+- finish [assignment 2](https://github.com/floriankark/cs224n-win2223/tree/main/a2)
+- watch [Lecture 5](https://youtu.be/PLryWeHPcBs) and [Lecture 6](https://youtu.be/0LixFSa7yts)
