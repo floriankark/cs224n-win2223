@@ -18,7 +18,7 @@ def sigmoid(x):
     """
 
     ### YOUR CODE HERE (~1 Line)
-
+    return 1/(1+np.exp(-x))
     ### END YOUR CODE
 
     return s
