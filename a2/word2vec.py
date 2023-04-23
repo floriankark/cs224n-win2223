@@ -64,7 +64,13 @@ def naiveSoftmaxLossAndGradient(
     ### Please use the provided softmax function (imported earlier in this file)
     ### This numerically stable implementation helps you avoid issues pertaining
     ### to integer overflow. 
+    y_hat = softmax(np.dot(outsideVectors, centerWordVec))
+    y = np.zeros(y_hat.shape)
+    y[outsideWordIdx] = 1
 
+    loss = -np.log(y_hat[outsideWordIdx])
+    gradCenterVec = np.dot(outsideVectors.T, y_hat - y)
+    gradOutsideVecs = np.outer(y_hat - y, centerWordVec)
     ### END YOUR CODE
 
     return loss, gradCenterVec, gradOutsideVecs
