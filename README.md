@@ -1,6 +1,6 @@
 # <p align="center">CS224N: Natural Language Processing with Deep Learning</p>
 ## <p align="center">[Stanford / Winter 2023](http://web.stanford.edu/class/cs224n/index.html)</p>
-Walkthrough of the schedule and solutions of the assignments of the Stanford CS224N: Natural Language Processing with Deep Learning course from winter 2022/23
+Walkthrough of the schedule and solutions of the assignments of the Stanford CS224N: Natural Language Processing with Deep Learning course from winter 2022/23. If you come across any errors, please let me know at florian.kark@hhu.de
 
 Reading papers is an important part of this course and crucial for completing the assignments successfully. Therefore I recommend to have a look at [How to read a Paper](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf)
 
