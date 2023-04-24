@@ -21,6 +21,7 @@ Reading papers is an important part of this course and crucial for completing th
 
 **Apr.21.2023**
 
+- read [Understanding word vectors](https://gist.github.com/aparrish/2f562e3737544cf29aaf1af30362f469) (my own suggestion, not included in original cs224n)
 - finish [assignment 2 written](https://github.com/floriankark/cs224n-win2223/tree/main/a2_written)
 
 **Apr.22.2023**
