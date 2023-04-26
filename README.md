@@ -42,3 +42,7 @@ Reading papers is an important part of this course and crucial for completing th
 
 - read papers from assignment 3 [Adam: A Method for Stochastic Optimization](https://arxiv.org/pdf/1412.6980.pdf), [Tricks from the actual Adam update](https://cs231n.github.io/neural-networks-3/#sgd), [Dropout: A Simple Way to Prevent Neural Networks from
 Overfitting](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf)
+
+**Apr.26.2023**
+
+- finish [assignment 3 written](https://github.com/floriankark/cs224n-win2223/tree/main/a3_written)
