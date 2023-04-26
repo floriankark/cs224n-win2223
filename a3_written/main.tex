@@ -1,0 +1,131 @@
+ \documentclass[answers]{exam}
+\newif\ifanswers
+\answerstrue % comment out to hide answers
+
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{enumerate}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{hyperref}
+\usepackage{datetime}
+\usepackage{minted}
+\settimeformat{ampmtime}
+\usepackage{algpseudocode}
+\usepackage{algorithmicx}
+\usepackage[ruled]{algorithm}
+\usepackage{tikz-dependency}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,patterns,fit,calc}
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+%\pagestyle{fancy}
+%\rhead{\hmwkAuthorName} % Top left header
+%\lhead{\hmwkClass: \hmwkTitle} % Top center head
+%\lfoot{\lastxmark} % Bottom left footer
+%\cfoot{} % Bottom center footer
+%\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
+%\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+%\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\pagestyle{headandfoot}
+\runningheadrule{}
+\firstpageheader{CS 224n}{Assignment 3}{}
+\runningheader{CS 224n} {Assignment 3} {Page \thepage\ of \numpages}
+\firstpagefooter{}{}{} \runningfooter{}{}{}
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{Python} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=Python, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\footnotesize\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Dependency Parsing} % Assignment title
+\newcommand{\hmwkClass}{CS\ 224n Assignment \#3} % Course/class
+\newcommand{\ifans}[1]{\ifanswers \color{red} \textbf{Solution: } #1 \color{black} \fi}
+
+% \newcommand{\ifans}[1]{}
+
+\input macros.tex
+\input std_macros.tex
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+\qformat{\Large\bfseries\thequestion{}. \thequestiontitle{} (\thepoints{})\hfill}
+
+\title{
+\vspace{-1in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}
+}
+\author{}
+%\date{\textit{\small Updated \today\ at \currenttime}} % Insert date here if you want it to appear below your name
+\date{}
+
+\setcounter{section}{0} % one-indexing
+\begin{document}
+
+\maketitle
+% \vspace{-10pt}
+
+In this assignment, you will build a neural dependency parser using PyTorch. For a review of the fundamentals of PyTorch, please check out the PyTorch review session on Canvas.  In Part 1, you will learn about two general neural network techniques (Adam Optimization and Dropout). In Part 2, you will implement and train a dependency parser using the techniques from Part 1, before analyzing a few erroneous dependency parses.
+
+Please tag the questions correctly on Gradescope, the TAs  will take points off if you don't tag questions. 
+\begin{questions}
+    \input{q1.tex}
+    \newpage
+    \input{q2.tex}
+\end{questions}
+
+\input{submission.tex}
+\end{document}
