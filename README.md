@@ -48,3 +48,5 @@ Overfitting](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf)
 - finish [assignment 3 written](https://github.com/floriankark/cs224n-win2223/tree/main/a3_written)
 
 **Apr.27.2023**
+
+- read [An Explanation of Xavier Initialization](https://andyljones.tumblr.com/post/110998971763/an-explanation-of-xavier-initialization), [nn.Parameters](https://pytorch.org/docs/stable/nn.html#parameters), [Initialization](https://pytorch.org/docs/stable/nn.init.html), [Dropout](https://pytorch.org/docs/stable/nn.html#dropout-layers)
