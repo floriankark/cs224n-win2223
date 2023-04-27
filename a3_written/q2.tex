@@ -1,3 +1,11 @@
+\newif\ifanswers
+\answerstrue % comment out to hide answers
+
+\newenvironment{answer}{
+    % Uncomment this if using the template to write out your solutions.
+    {\bf Answer:} \sf \begingroup\color{red}
+}{\endgroup}%
+
 \titledquestion{Neural Transition-Based Dependency Parsing}[46]
 
 In this section, you'll be implementing a neural-network based dependency parser with the goal of maximizing performance on the UAS (Unlabeled Attachment Score) metric.\newline
@@ -24,17 +32,33 @@ On each step, your parser will decide among the three transitions using a neural
     %\begin{center}
     \includegraphics[width=80mm]{example.jpg} \\
     %\end{center}
-    
-    \begin{tabular}{ l | l | l | l}
+
+    \begin{answer}\newline
+    \begin{tabular}{ p{4cm} | p{4cm} | l | l }
     Stack & Buffer & New dependency & Transition \\ \hline
     [ROOT] & [I, attended, lectures, in, the, NLP, class] &  & Initial Configuration \\
     $[$ROOT, I] & [attended, lectures, in, the, NLP, class] &  &  \texttt{SHIFT}  \\
     $[$ROOT, I, attended] & [lectures, in, the, NLP, class] &  &  \texttt{SHIFT}  \\
     $[$ROOT, attended] & [lectures, in, the, NLP, class] & attended$\to$I &  \texttt{LEFT-ARC}  \\
+    $[$ROOT, attended, lectures] & [in, the, NLP, class] &  & \texttt{SHIFT}  \\
+    $[$ROOT, attended] & [in, the, NLP, class] & attended$\to$lectures &  \texttt{RIGHT-ARC}  \\
+    $[$ROOT, attended, in] & [the, NLP, class] &  & \texttt{SHIFT}  \\
+    $[$ROOT, attended, in, the] & [NLP, class] &  & \texttt{SHIFT}  \\
+    $[$ROOT, attended, in, the, NLP] & [class] &  & \texttt{SHIFT}  \\
+    $[$ROOT, attended, in, the, NLP, class] & [] &  & \texttt{SHIFT}  \\
+    $[$ROOT, attended, in, the, class] & [] & class$\to$NLP & \texttt{LEFT-ARC}  \\
+    $[$ROOT, attended, in, class] & [] & class$\to$the & \texttt{LEFT-ARC}  \\
+    $[$ROOT, attended, class] & [] & class$\to$in & \texttt{LEFT-ARC}  \\
+    $[$ROOT, attended] & [] & attended$\to$class & \texttt{RIGHT-ARC}  \\
+    $[$ROOT] & [] & ROOT$\to$attended & \texttt{RIGHT-ARC}  \\
     \end{tabular}\newline
-
+    \end{answer}\newline
     
     \part[2] A sentence containing $n$ words will be parsed in how many steps (in terms of $n$)? Briefly explain in 1--2 sentences why.
+    \newline
+    \begin{answer}
+    The number of steps required to parse a sentence of $n$ words is $2n$ because a transition-based parser pushes $n$ words to the stack with SHIFT and then removes those $n$ words with the LEFT- or RIGHT-ARC.
+    \end{answer}\newline
 
        
     
@@ -195,7 +219,46 @@ In particular, you \textbf{do not} need to look at the labels on the the depende
 
 \input{dep_parses.tex}
 
+\begin{answer}\newline
+    \begin{enumerate}
+    \item
+        \begin{itemize}
+        \item \textbf{Error type}: Verb Phrase Attachment Error
+        \item \textbf{Incorrect dependency}: acquisition $\rightarrow$ citing 
+        \item \textbf{Correct dependency}: blocked $\rightarrow$ citing
+        \end{itemize}
+
+    \item
+        \begin{itemize}
+        \item \textbf{Error type}: Modifier Attachment Error
+        \item \textbf{Incorrect dependency}: left $\rightarrow$ early 
+        \item \textbf{Correct dependency}: afternoon $\rightarrow$ early
+        \end{itemize}
+        
+    \item
+        \begin{itemize}
+        \item \textbf{Error type}: Prepositional Phrase Attachment Error
+        \item \textbf{Incorrect dependency}: declined $\rightarrow$ decisions 
+        \item \textbf{Correct dependency}: reasons $\rightarrow$ decision
+        \end{itemize}
+
+    \item
+        \begin{itemize}
+        \item \textbf{Error type}: Coordination Attachment Error:
+        \item \textbf{Incorrect dependency}: affects $\rightarrow$ one 
+        \item \textbf{Correct dependency}: plants $\rightarrow$ one
+        \end{itemize}
+    
+\end{enumerate}
+\end{answer}
 
 \part[2] Recall in part (e), the parser uses features which includes words and their part-of-speech (POS) tags. Explain the benefit of using part-of-speech tags as features in the parser?
 
+\begin{answer}\newline
+Disambiguation: Part-of-speech tags disambiguate words that have multiple possible meanings. For example, the word "bank" can be a noun meaning a financial institution, or a verb meaning to tilt to one side. However, if we know that "bank" is tagged as a noun, we can more confidently assume that it refers to a financial institution in a given context.
+\\
+Parsing efficiency: POS tags reduce parsing complexity and increase parsing efficiency. By identifying the part of speech of each word in a sentence, the parser can more easily identify the grammatical structure of the sentence and the relationships between its components.
+\\
+Improved accuracy: They provide additional information about the syntactic and semantic context of each word, which allows the parser to make more informed decisions about how to parse the sentence and what relationships to assign to each component.
+\end{answer}
 \end{parts}
