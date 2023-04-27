@@ -1,0 +1,2 @@
+# ignore datasets because they are too lage for github
+data/*
