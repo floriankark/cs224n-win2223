@@ -1,0 +1,105 @@
+\documentclass[answers]{exam}
+\usepackage{xeCJK}
+\newif\ifanswers
+% REMEMBER TO COMMENT OUT BEFORE GIVING TO PRETESTERS
+\answerstrue %comment out to hide answers
+
+\usepackage{fontspec}
+\newfontfamily{\cherokeefam}{FreeSerif}
+
+\newfontfamily{\monofam}{Latin Modern Mono}
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{enumerate}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{hyperref}
+\usepackage{datetime}
+\settimeformat{ampmtime}
+\usepackage{caption}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,patterns,fit,calc}
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+\pagestyle{headandfoot}
+\runningheadrule{}
+\firstpageheader{CS 224n}{Assignment 4}{}
+\runningheader{CS 224n} {Assignment 4} {Page \thepage\ of \numpages}
+\firstpagefooter{}{}{} \runningfooter{}{}{}
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+\lstloadlanguages{bash}
+\lstset{language=bash,
+        frame=none, % Single frame around code
+        basicstyle=\monofam, % Use small true type font
+}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Assignment \#4} % Assignment title
+\newcommand{\hmwkClass}{CS\ 224n} % Course/class
+\newcommand{\hmwkAuthorName}{} % Author name
+\newcommand{\ifans}[1]{\ifanswers \color{red} \vspace{5mm} \textbf{Solution: } #1 \color{black} \vspace{5mm} \fi}
+\newcommand{\TODO}[1]{\color{magenta} \textbf{TODO:} #1 \color{black}}
+
+\input std-macros
+\input macros
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+\qformat{\Large\bfseries\thequestion{}. \thequestiontitle{} (\thepoints{})\hfill}
+
+\title{
+\vspace{-1in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle} \\ \hmwkAuthorName}
+}
+\author{}
+%\date{\textit{\small Updated \today\ at \currenttime}} % Insert date here if you want it to appear below your name
+\date{}
+
+\setcounter{section}{0} % one-indexing
+
+\begin{document}
+
+\maketitle
+\vspace{-.5in}
+
+
+This assignment is split into two sections: \textit{Neural Machine Translation with RNNs} and \textit{Analyzing NMT Systems}. The first is primarily coding and implementation focused, whereas the second entirely consists of written, analysis questions. If you get stuck on the first section, you can always work on the second as the two sections are independent of each other. Note that the NMT system is more complicated than the neural networks we have previously constructed within this class and takes about \textbf{2 hours to train on a GPU}. Thus, we strongly recommend you get started early with this assignment. Finally, the notation and implementation of the NMT system is a bit tricky, so if you ever get stuck along the way, please come to Office Hours so that the TAs can support you. \newline
+
+\begin{questions}
+    \input q1
+    \input q2
+\end{questions}
+
+\input{submission.tex}
+\end{document}
