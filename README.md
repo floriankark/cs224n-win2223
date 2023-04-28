@@ -52,3 +52,7 @@ Overfitting](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf)
 - read [An Explanation of Xavier Initialization](https://andyljones.tumblr.com/post/110998971763/an-explanation-of-xavier-initialization), 
 - PyTorch documentation [nn.Parameters](https://pytorch.org/docs/stable/nn.html#parameters), [Initialization](https://pytorch.org/docs/stable/nn.init.html), [Dropout](https://pytorch.org/docs/stable/nn.html#dropout-layers), [Index select](https://pytorch.org/docs/stable/torch.html#torch.index_select), [Gather](https://pytorch.org/docs/stable/torch.html#torch.gather), [View](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.view), [Flatten](https://pytorch.org/docs/stable/generated/torch.flatten.html), [Matrix product](https://pytorch.org/docs/stable/torch.html#torch.matmul), [ReLU](https://pytorch.org/docs/stable/nn.html?highlight=relu#torch.nn.functional.relu), [Adam Optimizer](https://pytorch.org/docs/stable/optim.html), [Cross Entropy Loss](https://pytorch.org/docs/stable/nn.html#crossentropyloss), [Optimizer Step](https://pytorch.org/docs/stable/optim.html#optimizer-step)
 - finish [assignment 3](https://github.com/floriankark/cs224n-win2223/tree/main/a3)
+
+**Apr.28.2023**
+
+- watch [Lecture 7](https://youtu.be/wzfWHP6SXxY) and [Lecture 8](https://youtu.be/gKD7jPAdbpE)
