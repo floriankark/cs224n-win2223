@@ -60,4 +60,5 @@ Overfitting](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf)
 
 **Mai.6.2023**
 
+- read [Embedding Layer](https://pytorch.org/docs/stable/nn.html#torch.nn.Embedding)
 
