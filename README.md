@@ -60,5 +60,5 @@ Overfitting](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf)
 
 **Mai.6.2023**
 
-- read [Embedding Layer](https://pytorch.org/docs/stable/nn.html#torch.nn.Embedding)
+- read [Embedding Layer](https://pytorch.org/docs/stable/nn.html#torch.nn.Embedding), [LSTM](https://pytorch.org/docs/stable/nn.html#torch.nn.LSTM), [LSTM Cell](https://pytorch.org/docs/stable/nn.html#torch.nn.LSTMCell), [Linear Layer](https://pytorch.org/docs/stable/nn.html#torch.nn.Linear), [Dropout Layer](https://pytorch.org/docs/stable/nn.html#torch.nn.Dropout), [Conv1D Layer](https://pytorch.org/docs/stable/generated/torch.nn.Conv1d.html)
 
