@@ -135,7 +135,6 @@ Note that this virtual environment \textbf{will not} be needed on the VM.\newlin
     Then explain (in one or two sentences) why it is necessary to use the masks in this way.
 
     \ifans{The \texttt{enc\_masks} tensor is used to mask out the padded elements in the attention computation, ensuring that the decoder does not attend to them. This is achieved by setting the values of $\b e_t$ corresponding to the padded elements to $-\infty$. The softmax operation on $\b e_t$ then ensures that the attention scores corresponding to the padded elements become $0$, effectively ignoring them in the attention calculation. \\ It is necessary to use the masks in this way because the padded tokens in the source sequence have no meaning and should not be attended to by the decoder.} \newline
-    
 \end{parts}
 
 Now it's time to get things running! As noted earlier, we recommend that you develop the code on your personal computer.  Confirm that you are running in the proper conda environment and then execute the following command to train the model on your local machine:
@@ -198,7 +197,7 @@ sh run.sh test
 \end{lstlisting}
     Please report the model's corpus BLEU Score. It should be larger than 18.
     
-    \ifans{}
+    \ifans{Corpus BLEU: 18.218032825693612}
     
     \part[4] (written) In class, we learned about dot product attention, multiplicative attention, and additive attention.  As a reminder, dot product attention is $\be_{t,i} = \bs_t^T\bh_i$, multiplicative attention is $\be_{t,i} = \bs_t^T\bW\bh_i$, and additive attention is $\be_{t,i} = \bv^T \text{tanh}(\bW_1\bh_i + \bW_2\bs_t)$.
     
