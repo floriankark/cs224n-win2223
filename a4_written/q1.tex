@@ -207,5 +207,10 @@ sh run.sh test
     \subpart[2] Explain one advantage and one disadvantage of \textit{additive attention} compared to multiplicative attention.
     \end{subparts}
             
-    \ifans{}
+    \ifans{
+    \begin{enumerate}[i.]
+        \item The advantage of dot product attention is that it is computationally more efficient, as it requires only a simple dot product operation between the query and the key vectors.\\ A disadvantage of dot product attention is that it does not allow the model to learn different weights for the query and key vectors, which limits its ability to capture complex patterns in the data.
+        \item The advantage of additive attention is that it allows the model to learn different weights for the query and key vectors. This improves its ability to capture complex patterns in the data. Additionally, additive attention is more flexible than multiplicative attention, as it models non-linear relationships between the query and key vectors.\\ The disadvantage of additive attention is that it is computationally more expensive, as it requires multiple matrix multiplications and non-linear operations to compute the attention scores.
+    \end{enumerate}
+    }
 \end{parts}
