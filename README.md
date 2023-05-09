@@ -67,3 +67,12 @@ Overfitting](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf)
 **Mai.7.2023**
 
 - finish [assignment 4 written](https://github.com/floriankark/cs224n-win2223/tree/main/a4_written)
+
+**Mai.8.2023**
+
+- watch [Lecture 9](https://youtu.be/ptuGllU5SQQ)
+- read [Attention Is All You Need](https://arxiv.org/abs/1706.03762.pdf), [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/), [Transformer](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html) (Google AI blog post), [Layer Normalization](https://arxiv.org/pdf/1607.06450.pdf), [Image Transformer](https://arxiv.org/pdf/1802.05751.pdf), [Music Transformer: Generating music with long-term structure](https://arxiv.org/pdf/1809.04281.pdf)
+
+**Mai.9.2023**
+
+- watch [Lecture 10](https://youtu.be/j9AcEI98C0o)
