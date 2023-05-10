@@ -75,4 +75,5 @@ Overfitting](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf)
 
 **Mai.9.2023**
 
-- watch [Lecture 10](https://youtu.be/j9AcEI98C0o)
+- watch [Lecture 10](https://youtu.be/j9AcEI98C0o) and [Lecture 11](https://youtu.be/NcqfHa0_YmU)
+- BERT: [Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf), [Contextual Word Representations: A Contextual Introduction](https://arxiv.org/abs/1902.06006.pdf), [The Illustrated BERT, ELMo, and co.](http://jalammar.github.io/illustrated-bert/), [Martin & Jurafsky Chapter on Transfer Learning](https://web.stanford.edu/~jurafsky/slp3/11.pdf), [The Curious Case of Neural Text Degeneration](https://arxiv.org/abs/1904.09751.pdf), [Get To The Point: Summarization with Pointer-Generator Networks](https://arxiv.org/abs/1704.04368.pdf), [Hierarchical Neural Story Generation](https://arxiv.org/abs/1805.04833.pdf), [How NOT To Evaluate Your Dialogue System](https://arxiv.org/abs/1603.08023.pdf)
