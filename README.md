@@ -82,3 +82,7 @@ Overfitting](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf)
 
 - watch [Lecture 12](https://youtu.be/1uMo8olr5ng)
 - read [The Curious Case of Neural Text Degeneration](https://arxiv.org/abs/1904.09751.pdf), [Get To The Point: Summarization with Pointer-Generator Networks](https://arxiv.org/abs/1704.04368.pdf), [Hierarchical Neural Story Generation](https://arxiv.org/abs/1805.04833.pdf), [How NOT To Evaluate Your Dialogue System](https://arxiv.org/abs/1603.08023.pdf)
+
+**Mai.11.2023**
+
+- finish [assignment 5](https://github.com/floriankark/cs224n-win2223/tree/main/a5)
