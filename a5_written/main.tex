@@ -1,0 +1,180 @@
+\documentclass[answers]{exam}
+\newif\ifanswers
+\answerstrue%
+
+\usepackage{lastpage} %
+\usepackage{extramarks} %
+\usepackage[usenames,dvipsnames]{color} %
+\usepackage{graphicx} %
+\usepackage{listings} %
+\usepackage{courier} %
+\usepackage{lipsum} %
+\usepackage{soul}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{hyperref}
+\usepackage{datetime}
+\usepackage{minted}
+\usepackage{xspace}
+\settimeformat{ampmtime}
+\usepackage{listings}
+\usepackage{inconsolata}
+
+\usepackage{array}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}}
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
+
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,patterns,fit,calc}
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} %
+
+
+\newcommand{\mingpt}{\texttt{minGPT}\xspace}
+\newcommand{\ourmodel}{\texttt{minLinT5}\xspace}
+
+\pagestyle{headandfoot}
+\runningheadrule{}
+\firstpageheader{CS 224N}{Assignment 5}{Self-attention, Transformers, Pretraining}
+\runningheader{CS 224N} {Assignment 5} {Page \thepage\ of \numpages}
+\firstpagefooter{}{}{} \runningfooter{}{}{}
+
+\setlength\parindent{0pt} %
+
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} %
+\lstloadlanguages{Python} %
+\lstset{language=Python, %
+        frame=single, %
+        basicstyle=\footnotesize\ttfamily, %
+        keywordstyle=[1]\color{Blue}\bf, %
+        keywordstyle=[2]\color{Purple}, %
+        keywordstyle=[3]\color{Blue}\underbar, %
+        identifierstyle=, %
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, %
+        stringstyle=\color{Purple}, %
+        showstringspaces=false, %
+        tabsize=5, %
+        morekeywords={rand},
+        morekeywords=[2]{on, off, interp},
+        morekeywords=[3]{test},
+        morecomment=[l][\color{Blue}]{...}, %
+        numbers=left, %
+        firstnumber=1, %
+        numberstyle=\tiny\color{Blue}, %
+        stepnumber=5 %
+}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+ 
+
+
+\newcommand{\hmwkTitle}{Assignment 5: Self-Attention, Transformers, and Pretraining} %
+\newcommand{\hmwkClass}{CS\ 224N} %
+\newcommand{\ifans}[1]{\ifanswers \color{red}  \textbf{Answer: } #1 \color{black} 
+ \fi}
+
+\input std-macros
+\input macros
+
+\qformat{\Large\bfseries\thequestion{}. \thequestiontitle{} (\thepoints{})\hfill}
+
+\title{
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}
+}
+\author{}
+\date{}
+
+\setcounter{section}{0} %
+\begin{document}
+
+\vspace{-1in}
+
+\maketitle
+
+\vspace{-0.5in}
+
+
+\begin{framed}
+\noindent
+ \textbf{Note.} Here are some things to keep in mind as you plan your time for this assignment.
+\begin{itemize}
+   \item There are math questions again!
+   \item The total amount of PyTorch code to write, and code complexity, of this assignment is lower than Assignment 4. 
+         However, you're also given less guidance or scaffolding in how to write the code.
+         \item  This assignment involves a pretraining step that takes approximately 2 hours to perform on Azure, and you'll have to do it twice. Colab set-up notebook has been provided similar to Assignment 4. The 2 hour timeline is an upper bound on the training time assuming older/slower GPU. On faster GPUs, the pretraining can finish in around 30-40 minutes.
+\end{itemize}
+
+\end{framed}
+This assignment is an investigation into Transformer self-attention building blocks, and the effects of pretraining.
+It covers mathematical properties of Transformers and self-attention through written questions.
+Further, you'll get experience with practical system-building through repurposing an existing codebase.
+The assignment is split into a written (mathematical) part and a coding part, with its own written questions.
+Here's a quick summary:
+\begin{enumerate}
+\item \textbf{Mathematical exploration:}  What kinds of operations can self-attention easily implement? Why should we use fancier things like multi-headed self-attention?
+This section will use some mathematical investigations to illuminate a few of the motivations of self-attention and Transformer networks.
+{\color{red} \textbf{Note:} for all questions, you should justify your answer with mathematical reasoning when required.}
+
+\item \textbf{Extending a research codebase:}
+In this portion of the assignment, you'll get some experience and intuition for a cutting-edge research topic in NLP: teaching NLP models facts about the world through pretraining, and accessing that knowledge through finetuning.
+You'll train a Transformer model to attempt to answer simple questions of the form ``Where was person [x] born?'' -- without providing any input text from which to draw the answer.
+You'll find that models are able to learn some facts about where people were born through pretraining, and access that information during fine-tuning to answer the questions.
+
+Then, you'll take a harder look at the system you built, and reason about the implications and concerns about relying on such implicit pretrained knowledge.
+
+
+\end{enumerate}
+
+This assignment was originally created by John Hewitt, CS 224N Head TA in Winter 2021. 
+
+
+
+\newpage
+
+\begin{questions}
+   \input q_math
+   \input q_code
+\end{questions}
+
+\Large{\textbf{Submission Instructions}}
+
+\normalsize
+You will submit this assignment on GradeScope as two submissions -- one for \textbf{Assignment 5 [coding]} and another for \textbf{Assignment 5 [written]}:
+\begin{enumerate}
+    \item Verify that the following files exist at these specified paths within your assignment directory:
+        \begin{itemize}
+            \item The no-pretraining model and predictions: \texttt{vanilla.model.params}, \texttt{vanilla.nopretrain.dev.predictions},\\\texttt{vanilla.nopretrain.test.predictions}
+            \item The pretrain-finetune model and predictions: \texttt{vanilla.finetune.params}, \texttt{vanilla.pretrain.dev.predictions}, \\ \texttt{vanilla.pretrain.test.predictions}
+            \item The Perceiver model and predictions: \texttt{perceiver.finetune.params}, \texttt{perceiver.pretrain.dev.predictions}, \\ \texttt{perceiver.pretrain.test.predictions}
+        \end{itemize}
+
+    \item Run the \texttt{collect\_submission.sh} script to produce your \texttt{assignment5.zip} file.
+    \item Upload your \texttt{assignment5.zip} file to GradeScope to \textbf{Assignment 5 [coding]}.
+    \item Check that the public autograder tests passed correctly.
+    \item Upload your written solutions, for questions 1, parts of 2, and 3, to GradeScope to \textbf{Assignment 5 [written]}. Tag it properly!
+\end{enumerate}
+
+\bibliographystyle{acm}
+\bibliography{main}
+
+\end{document}
