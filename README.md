@@ -1,6 +1,6 @@
 # <p align="center">CS224N: Natural Language Processing with Deep Learning</p>
 ## <p align="center">[Stanford / Winter 2023](http://web.stanford.edu/class/cs224n/index.html)</p>
-Walkthrough of the schedule and solutions of the assignments of the Stanford CS224N: Natural Language Processing with Deep Learning course from winter 2022/23. If you come across any errors, please let me know at florian.kark@hhu.de
+This repository contains my solutions of the assignments of the Stanford CS224N: Natural Language Processing with Deep Learning course from winter 2022/23. There are many other great repositories on this course but none that cover the latest assignments (winter 2022 / 2023) and contain the written and practical parts completely (state: Mai 12. 2023). This repository is intended as a learning ressource which provides answers if you are stuck. Please do yourself a favor and try it on your own first. If you come across any errors or like me to include a more expressive explanation, please let me know at florian.kark@hhu.de.
 
 Reading papers is an important part of this course and crucial for completing the assignments successfully. Therefore I recommend to have a look at [How to read a Paper](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf)
 
