@@ -86,3 +86,7 @@ Overfitting](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf)
 **Mai.11.2023**
 
 - finish [assignment 5](https://github.com/floriankark/cs224n-win2223/tree/main/a5)
+
+**Mai.12.2023**
+
+- finish [assignment 5 written](https://github.com/floriankark/cs224n-win2223/tree/main/a5_written)
