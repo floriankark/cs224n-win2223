@@ -4,6 +4,7 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
+
 def set_seed(seed):
     random.seed(seed)
     np.random.seed(seed)
@@ -45,13 +46,15 @@ def sample(model, x, steps, temperature=1.0, sample=False, top_k=None):
         x = torch.cat((x, ix), dim=1)
 
     return x
-
+"""
 def get_name_prediction(model, dataset_object, input_string):
     x = torch.tensor([dataset_object.stoi[s] for s in input_string], dtype=torch.long)[None,...].to(trainer_obj.device)
-    pred = utils.sample(model, x, 32, sample=False)[0]
+    # before: pred = utils.sample(model, x, 32, sample=False)[0]
+    pred = sample(model, x, 32, sample=False)[0]
     completion = ''.join([train_dataset.itos[int(i)] for i in pred])
     pred = completion.split('⁇')[1]
     return pred
+"""
 
 def evaluate_places(filepath, predicted_places):
   """ Computes percent of correctly predicted birth places.
