@@ -65,13 +65,13 @@ Don't change above here; write your code below
 
 if args.variant == 'vanilla':
     # [part c] Make some model here
-    model = model.GPT(mconf)
+    model = model.GPT(mconf).to(device) #after you load the model, it is no longer on GPU so add .to(device)
 elif args.variant == 'perceiver':
     # set mconf.perceiver, and mconf.bottleneck_dim parameters appropriately.
     # [part g] Make some other model here
     mconf.perceiver = True
     mconf.bottleneck_dim = args.bottleneck_dim
-    model = model.GPT(mconf)
+    model = model.GPT(mconf).to(device)
 else:
     raise ValueError("Unknown model variant")
 
@@ -105,12 +105,12 @@ if args.function == 'pretrain':
         lr_decay=True,
         warmup_tokens=512*20,
         final_tokens=200*len(pretrain_dataset)*block_size,
-        num_workers=4,
+        num_workers=2,
         writer=writer
     )
     trainer = trainer.Trainer(model, pretrain_dataset, None, trainer_config)
     trainer.train()
-    torch.save(model.state_dict(), args.writing_params_path)
+    torch.save(model.state_dict(), args.writing_params_path)    
 
 elif args.function == 'finetune':
     assert args.writing_params_path is not None
@@ -156,7 +156,7 @@ elif args.function == 'finetune':
             lr_decay=True,
             warmup_tokens=512*20,
             final_tokens=200*len(pretrain_dataset)*block_size,
-            num_workers=4,
+            num_workers=2,
             writer=writer
         )
     else:
@@ -167,13 +167,20 @@ elif args.function == 'finetune':
             lr_decay=True,
             warmup_tokens=512*20,
             final_tokens=200*len(pretrain_dataset)*block_size,
-            num_workers=4,
+            num_workers=2,
             writer=writer
         )
-    
     finetune_dataset = dataset.NameDataset(pretrain_dataset, open(args.finetune_corpus_path, encoding='utf-8').read())
-    trainer = trainer.Trainer(model, finetune_dataset, None, trainer_config)
+
+    if args.eval_corpus_path is not None:
+        eval_corpus = open(args.eval_corpus_path).read()
+        eval_dataset = dataset.NameDataset(pretrain_dataset, eval_corpus)
+    else:
+        eval_dataset = None
+    
+    trainer = trainer.Trainer(model, finetune_dataset, eval_dataset, trainer_config)
     trainer.train()
+
     torch.save(model.state_dict(), args.writing_params_path)
      
 elif args.function == 'evaluate':
