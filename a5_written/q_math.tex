@@ -21,16 +21,23 @@ Observe that the output $c\in\mathbb{R}^d$ is an average over the value vectors 
 \begin{subparts}
     \subpart[1] \textbf{Explain} why $\alpha$ can be interpreted as a categorical probability distribution. 
     
-    \ifans{}
+    \ifans{
+    $\alpha$ can be interpreted as a categorical probability distribution because we got: \\ 
+    $n > 0$ number of categories, \\
+    $\alpha_1, \ldots, \alpha_n$ event probabilities \\
+    and $\alpha_i > 0, \sum_{} \alpha_i = 1$ \\
+    which are the prerequisites for a categorical probability distribution
+    }
+    
     \subpart[2] The distribution $\alpha$ is typically relatively ``diffuse''; the probability mass is spread out between many different $\alpha_i$. However, this is not always the case. \textbf{Describe} (in one sentence) under what conditions the categorical distribution $\alpha$ puts almost all of its weight on some $\alpha_j$, where $j \in \{1, \ldots, n\}$ (i.e. $\alpha_j \gg \sum_{i \neq j} \alpha_i$). What must be true about the query $q$ and/or the keys $\{k_1,\dots,k_n\}$?
     
-    \ifans{
+    \ifans{It must apply $k_j^\top q \gg k_i^\top q \ \forall i \neq j$
     }
     \subpart[1] Under the conditions you gave in (ii),  \textbf{describe} the output $c$. 
     
-    \ifans{}
+    \ifans{From i. we know $\alpha_i > 0, \sum_{} \alpha_i = 1$ and since $\alpha_j \gg \sum_{i \neq j} \alpha_i$ we can approximate $\alpha_j \approx 1$ so that $c = \sum_{i=1}^{n} v_i \alpha_i \approx v_j \alpha_j \approx v_j$}
     \subpart[1] \textbf{Explain} (in two sentences or fewer) what your answer to (ii) and (iii) means intuitively. \\
-\ifans{}
+\ifans{If one of all key vectors is very similar or almost identical to the given query, the attention weight will be put almost exclusively on its value. Therefore, the output equals that value and in that sense we "copied" the keys value.}
 
 \end{subparts}
 
@@ -52,14 +59,43 @@ Using the basis vectors $\{a_1, a_2, \ldots, a_m\}$, construct a matrix $M$ such
 
 \textbf{Hint:} Given that the vectors $\{a_1, a_2, \ldots, a_m\}$ are both \textit{orthogonal} and \textit{form a basis} for $v_a$, we know that there exist some $c_1, c_2, \ldots, c_m$ such that $v_a = c_1 a_1 + c_2 a_2 + \cdots + c_m a_m$. Can you create a vector of these weights $c$? 
 
-\ifans{}
+\ifans{ First we figure out what M should look like. \\
+To show: $Ms = v_a$ \\
+$\Leftrightarrow M(v_a + v_b) = v_a$ \\
+$\Leftrightarrow Mv_a + Mv_b = v_a$
+For M must apply: (i.) $Mv_a = v_a$ and (ii.) $Mv_b = 0$ \\
+\\
+(i.) By deconstructing $v_a$ we get: \\
+$Mv_a = M(c_1 a_1 + c_2 a_2 + \cdots + c_m a_m) = MAc = v_a$ \\
+Since all basis vectors have norm 1 and are orthogonal to each other (see text), we have $a_j^\top a_i = 0$ with the exception $a_j^\top a_i = 1$ if $j = i$ \\
+Using this we can choose $M = A^\top$ and get: \\
+$A^\top Ac = c_1 a_1^\top a_1 + \cdots + c_m a_m^\top a_m = c$ \\
+(Note: $c$ is $v_a$ expressed as a vector in $\mathbb{R}^d$) \\
+\\
+(ii.) same procedure for $v_b$: \\
+$Mv_b = M(d_1 b_1 + d_2 b_2 + \cdots + d_p b_p) = MBd = v_b$ \\
+This time we take advantage of that the two subspaces $A$ and $B$ are orthogonal: $a_j^\top b_k = 0 \ \forall \ j, k$ \\
+Choosing $M = A^\top$, we get: \\
+$A^\top Bd = d_1 a_1^\top b_1 + \cdots + d_p a_p^\top b_p = 0$ \\
+\\
+$M = A^\top$ satisfies both (i.) and (ii.). Inserting it in the equation $Mv_a + Mv_b = v_a$ we get:
+$A^\top Ac + A^\top Bd = c + 0 = c$
+
+That way we created a vector of the weights c and showed that the M we are looking for is $A^\top$.
+}
 
 \subpart[4] As before, let $v_a$ and $v_b$ be two value vectors corresponding to key vectors $k_a$ and $k_b$, respectively.
 Assume that (1) all key vectors are orthogonal, so $k_i^\top k_j = 0$ for all $i \neq j$; and (2) all key vectors have norm $1$.\footnote{Recall that a vector $x$ has norm 1 iff $x^\top x = 1$.}
 \textbf{Find an expression} for a query vector $q$ such that $c \approx \frac{1}{2}(v_a + v_b)$, and justify your answer. \footnote{Hint: while the softmax function will never \textit{exactly} average the two vectors, you can get close by using a large scalar multiple in the expression.} 
 
 
-\ifans{}
+\ifans{From $c \approx \frac{1}{2}(v_a + v_b)$ follows $\alpha_a = \alpha_b = 1/2$
+
+And from (a) we know that this means $k_a^\top q = k_b^\top q \gg k_i^\top q \ \forall i \neq a, b$ \\
+
+Let $k_a^\top q = k_b^\top q = \beta$, then $\frac{\exp(\beta)}{\sum_{j=1}^{n} \exp(\beta)} = \frac{\exp(\beta)}{n-2 + 2 \exp(\beta)}$ and for $\beta \gg 0 \Rightarrow \exp(\beta) \to \infty$ we get $\approx \frac{\exp(\beta)}{2 \exp(\beta)} = 1/2$ (see hint (2)) \\
+Therefore $q = \beta(k_a + k_b)$ with $\beta \gg 0$
+}
 \end{subparts}
 
 \part[5]\textbf{Drawbacks of single-headed attention:} \label{q_problem_with_single_head}
@@ -73,7 +109,9 @@ Further, assume that the means $\mu_i$ are all perpendicular; $\mu_i^\top \mu_j 
 \subpart[2] Assume that the covariance matrices are $\Sigma_i = \alpha I, \forall i \in \{1, 2, \ldots, n\}$, for vanishingly small $\alpha$.
 Design a query $q$ in terms of the $\mu_i$ such that as before, $c\approx \frac{1}{2}(v_a + v_b)$, and provide a brief argument as to why it works.
 
-\ifans{}
+\ifans{Since $\alpha$ is vanishingly small the the covariance matrices diagonal is vanishingly small to and $k_i\sim \mathcal{N}(\mu_i, \Sigma_i)$ will sample $k_i \approx  \mu_i$. \\
+Because the means $\mu_i$ are all perpendicular, just like the keys in (b), it will result in the same expression for $q = \beta(\mu_a + \mu_b)$ with $\beta \gg 0$
+}
 
 \subpart[3] Though single-headed attention is resistant to small perturbations in the keys, some types of larger perturbations may pose a bigger issue. Specifically, in some cases, one key vector $k_a$ may be larger or smaller in norm than the others, while still pointing in the same direction as $\mu_a$. As an example, let us consider a covariance for item $a$ as $\Sigma_a = \alpha I + \frac{1}{2}(\mu_a\mu_a^\top)$ for vanishingly small $\alpha$ (as shown in figure \ref{ka_plausible}). This causes $k_a$ to point in roughly the same direction as $\mu_a$, but with large variances in magnitude. Further, let $\Sigma_i = \alpha I$ for all $i \neq a$. %
 \begin{figure}[h]
@@ -86,7 +124,26 @@ Design a query $q$ in terms of the $\mu_i$ such that as before, $c\approx \frac{
 
 When you sample $\{k_1,\dots,k_n\}$ multiple times, and use the $q$ vector that you defined in part i., what do you expect the vector $c$ will look like qualitatively for different samples? Think about how it differs from part (i) and how $c$'s variance would be affected.
 
-\ifans{}
+\ifans{
+From above we know $\mu_i^\top \mu_i=1$ and $\alpha$ is vanishingly small, so considering the covarinace for $a$, $\Sigma_a = \alpha I + \frac{1}{2}(\mu_a\mu_a^\top)$ it follows that $k_a \in [0.5 \mu_a, 1.5 \mu_a]$. For all $i \neq a$ nothing changes to the tasks before. \\
+We can rewrite this as: \\
+$k_a = \gamma \mu_a$ where $\gamma \sim \mathcal{N}(1, 0.5)$ \\
+$k_i = \mu_i \ \forall i \neq a$ \\
+Using q we get: \\
+$k_a^\top q \approx \gamma \mu_a^\top \beta(\mathbf{\mu}_a + \mathbf{\mu}_b)\approx \gamma\beta $ where $\beta \gg 0$ \\
+$k_b^\top q \approx \mu_b^\top \beta(\mu_a + \mu_b)\approx \beta $ where $ \beta \gg 0$ \\
+$k_i^\top q \approx \mu_i^\top \beta(\mu_a + \mu_b) = \beta(\mu_i^\top \mu_a + \mu_i^\top \mu_b) = \beta(0 + 0) = 0$ where $ \beta \gg 0$ \\
+then the coefficients for $v_a$ and $v_b$ are calculated as follows \\
+For $v_a$: $\frac{\exp(k_a^\top q)}{\sum_{j=1}^{n} \exp(k_i^\top q)} = \frac{\exp(\gamma \beta)}{\exp(\gamma \beta) + \exp(\beta)} = \frac{1}{1+ \exp(\beta(1-\gamma))}$ \\
+For $v_b$: $\frac{\exp(k_b^\top q)}{\sum_{j=1}^{n} \exp(k_i^\top q)} = \frac{\exp(\beta)}{\exp(\beta) + \exp(\gamma \beta)} = \frac{1}{1+ \exp(\beta(\gamma-1))}$ \\
+Next we have a look at the behaviour at the boundaries of $gamma \in [0.5, 1.5]$ \\
+We can se from the final term, that it is a shifted softmax function to the right by one. While $\beta$ only controles the steepnes, $\gamma$ dictates if the value approaches $0$ or $1$. In our case the values of the coefficients will be mirrored because $gamma$ is sampled from $[0.5, 1.5]$ and either subtracted by $1$ or from $1$. \\   
+Mathematically: \\
+For $\gamma \to 0.5 \land \beta \gg 0$: $\frac{1}{1+ \exp(\beta(1-0.5))} \approx \frac{1}{1+ \infty} \approx  0$ while $\frac{1}{1+ \exp(\beta(0.5-1))} \approx \frac{1}{1+ 0} \approx  1$ \\
+For $\gamma \to 1.5 \land \beta \gg 0$: $\frac{1}{1+ \exp(\beta(1-1.5))} \approx \frac{1}{1+ 0} \approx  1$ while $\frac{1}{1+ \exp(\beta(1.5-1))} \approx \frac{1}{1+ \infty} \approx  0$ \\
+Therefore $c = v_a$ when $\gamma \to 1.5 \land \beta \gg 0$ and $c = v_b$ when $\gamma \to 0.5 \land \beta \gg 0$ \\
+In (i.) $c = 0.5v_a + 0.5v_b$ and is therefore always an evenly weighted combination of both. Now $c$ oscillates between $v_a$ and $v_b$.
+}
 \end{subparts}
 
 \part[3] \textbf{Benefits of multi-headed attention:}
@@ -101,14 +158,19 @@ Assume that the covariance matrices are $\Sigma_i=\alpha I$, for vanishingly sma
 Design $q_1$ and $q_2$ such that $c$ is approximately equal to $\frac{1}{2}(v_a+v_b)$. 
 Note that $q_1$ and $q_2$ should have different expressions.
 
-\ifans{}
+\ifans{In (c) (i.) we designed $q = \beta(\mu_a + \mu_b)$ such that $c = \frac{1}{2}(v_a + v_b)$ \\
+We exploit that the final $c$ is again the average of the terms $c_1$ and $c_2$: \\
+Let $c_1 = \frac{1}{2}(v_a + v_b)$ for $q_1 = \beta(\mu_a + \mu_b)$ and $c_2 = \frac{1}{2}(v_a + v_b)$ for $q_2 = \beta(\mu_a + \mu_b)$ we get: \\
+$c = \frac{1}{2}(c_1 + c_2) = \frac{1}{2}(\frac{1}{2}(v_a + v_b) + \frac{1}{2}(v_a + v_b)) = \frac{1}{4}(v_a + v_b) + \frac{1}{4}(v_a + v_b) = \frac{1}{2}(v_a + v_b)$
+}
 
 \subpart[2]
 Assume that the covariance matrices are $\Sigma_a=\alpha I + \frac{1}{2}(\mu_a\mu_a^\top)$ for vanishingly small $\alpha$, and $\Sigma_i=\alpha I$  for all $i \neq a$.
 Take the query vectors $q_1$ and $q_2$ that you designed in part i.
 What, qualitatively, do you expect the output $c$ to look like across different samples of the key vectors? Explain briefly in terms of variance in $c_1$ and $c2$. You can ignore cases in which $k_a^\top q_i < 0$. 
 
-\ifans{}
+\ifans{Because we chose $q = \beta(\mu_a + \mu_b)$ before, we get $c = \frac{1}{1+ \exp(\beta(1-\gamma))}v_a + \frac{1}{1+ \exp(\beta(\gamma-1))}v_b$ just like in (c) (ii.). By adding more attention heads, $c$ won't oscillate as much between $v_a$ and $v_b$ as before because $\gamma \sim \mathcal{N}(1, 0.5)$ approaches its mean $1$. \\ So $c \approx \frac{1}{1+ \exp(\beta(1-1))}v_a + \frac{1}{1+ \exp(\beta(1-1))}v_b = \frac{1}{1 + 1}v_a + \frac{1}{1 + 1}v_b = \frac{1}{2}(v_a + v_b)$ for $\gamma \to 1$
+}
 
 
 
