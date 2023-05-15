@@ -4,6 +4,8 @@ This repository contains my solutions of the assignments of the Stanford CS224N:
 
 Reading papers is an important part of this course and crucial for completing the assignments successfully. Therefore I recommend to have a look at [How to read a Paper](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf)
 
+For now, all assignments are completed. I will continue watching the rest of the lectures and come back in September this year to try completing one of the default projects.
+
 ## My Schedule
 
 **Apr.18.2023**
