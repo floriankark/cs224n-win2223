@@ -4,7 +4,7 @@ This repository contains my solutions of the assignments of the Stanford CS224N:
 
 Reading papers is an important part of this course and crucial for completing the assignments successfully. Therefore I recommend to have a look at [How to read a Paper](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf)
 
-From Assignment 2 and onwards you will need to edit latex files for your written solutions. I can recommend this [wikibook](https://en.wikibooks.org/wiki/LaTeX) as an up-to-date, comprehensive, and accessible reference. To have git integration I would use Vscode with a LateX extension as a LateX editor. For personal use [overleaf](https://www.overleaf.com/project) might be easier and quicker to use.
+From Assignment 2 and onwards you will need to edit latex files for your written solutions. I can recommend this [wikibook](https://en.wikibooks.org/wiki/LaTeX) as an up-to-date, comprehensive, and accessible reference. To have git integration I would use Vscode with a LateX extension as a LateX editor. For personal use, [overleaf](https://www.overleaf.com/project) might be easier and quicker to use.
 
 For now, all assignments are completed. I will continue watching the rest of the lectures and come back in September this year to try completing one of the default projects.
 
