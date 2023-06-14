@@ -100,7 +100,10 @@ python src/run.py evaluate vanilla wiki.txt  \
 
 Training will take less than 10 minutes (on Azure).  Report your model's accuracy on the dev set (as printed by the second command above). Similar to assignment 4, we also have Tensorboard logging in assignment 5 for debugging. It can be launched using \texttt{tensorboard --logdir expt/}.  Don't be surprised if it is well below 10\%; we will be digging into why in Part 3. As a reference point, we want to also calculate the accuracy the model would have achieved if it had just predicted ``London'' as the birth place for everyone in the dev set. Fill in \texttt{london\_baseline.py} to calculate the accuracy of that approach and report your result in your write-up. You should be able to leverage existing code such that the file is only a few lines long. 
 
-\ifans{}
+\ifans{\\
+Model accuracy: Correct: 10.0 out of 500.0: 2.0\% \\
+"London" accuracy: Correct: 25.0 out of 500.0: 5.0\%
+}
 
 
 \part[10]\textbf{Define a \textit{span corruption} function for pretraining.}\\
@@ -151,7 +154,8 @@ python src/run.py evaluate vanilla wiki.txt  \
 
 Report the accuracy on the dev set (printed by the third command above). We expect the dev accuracy will be at least 10\%, and will expect a similar accuracy on the held out test set.
 
-
+\ifans{
+}
 
 \part[10] \textbf{Research! Write and try out a more efficient variant of Attention (Budget 2 hours for pretraining!)}\\
 
@@ -247,7 +251,11 @@ For this section, you'll submit: \texttt{perceiver.finetune.params}, \texttt{per
 \subpart[8]  We'll score your model as to whether it gets at least 5\% accuracy on the test set, which has answers held out.
 \subpart[2] Provide an expression for the time complexity of the Perceiver model and the vanilla model, in terms of number of layers ($L$), input sequence length ($\ell$) and basis bottleneck dimension ($m$). 
 
-\ifans{}
+\ifans{
+The Attention layers are the crucial part of the perceiver approach. If we denote the input dimensionality as d, the complexity of the QKV attention operation is $\mathcal{O}(d \times \ell)$. However, if we use cross-attention, K and V are just projections of the input, while the Q is a projection of a learned latent vector reduced by $m$. The dimension of this latent vector is $m$, and we consider that $m \ll \ell$. That way the complexity of attention operation is reduced to $\mathcal{O}(d \times m)$. In the same way the complexity of self attentions in the latent transformer blocks will reduce to $\mathcal{O}(m^{2})$.
+
+So while multi-headed attention has a time complexity of $\mathcal{O}(\ell^2 d + \ell d^2)$ the time complexity of the perceiver model is $\mathcal{O}(dm + Lm^2)$, where d is the dimensionality of the byte array, m is the dimensionality of the latent array, and L is the depth of the transformer.
+}
 
 
 \end{subparts}
@@ -258,7 +266,7 @@ For this section, you'll submit: \texttt{perceiver.finetune.params}, \texttt{per
 
 \part[1] Succinctly explain why the pretrained (vanilla) model was able to achieve an accuracy of above 10\%, whereas the non-pretrained model was not.
 
-\ifans{}
+\ifans{The pretrained model achieved higher accuracy because it had prior knowledge from being trained on a large dataset. It learned patterns and features during pretraining, enabling it to generalize better on new examples. In contrast, the non-pretrained model started from scratch, lacking the initial knowledge and taking longer to learn meaningful representations, resulting in lower accuracy.}
 
 \part[2] Take a look at some of the correct predictions of the pretrain+finetuned vanilla model, as well as some of the errors.
 We think you'll find that it's impossible to tell, just looking at the output, whether the model \textit{retrieved} the correct birth place, or \textit{made up} an incorrect birth place.
@@ -266,6 +274,11 @@ Consider the implications of this for user-facing systems that involve pretraine
 Come up with two \textbf{distinct} reasons why this model behavior (i.e. unable to tell whether it's retrieved or made up) may cause concern for such applications, and an example for each reason.
 
 \ifans{
+\begin{enumerate}
+    \item Misinformation and Trust Issues: If the model cannot reliably distinguish between correct and fabricated information, it can inadvertently provide users with incorrect or misleading data. This can lead to the spread of misinformation and erode trust in the system. For example, in a news recommendation system, if the model generates false birthplaces for public figures, users may unknowingly consume and share incorrect information, leading to confusion and a loss of credibility.
+
+    \item Legal and Ethical Implications: In certain scenarios, the inability to verify the accuracy of retrieved information can have legal and ethical consequences. For instance, in a legal research application that relies on the model to retrieve historical facts, if the model cannot distinguish between actual birthplaces and made-up ones, it may inadvertently provide inaccurate information to lawyers, researchers, or judges.
+\end{enumerate}
 }
 
 \part[2] If your model didn't see a person's name at pretraining time, and that person was not seen at fine-tuning time either, it is not possible for it to have ``learned'' where they lived.
@@ -273,7 +286,9 @@ Yet, your model will produce \textit{something} as a predicted birth place for t
 Concisely describe a strategy your model might take for predicting a birth place for that person's name, and one reason why this should cause concern for the use of such applications.
 (You do not need to submit the same answer for 3c as for 3b.)
 
-\ifans{}
+\ifans{
+The model might use associative inference by leveraging patterns and correlations it learned during pretraining. For example, if the model has seen other individuals from a particular country or city who share similar attributes as the person in question, it may associate that birthplace with the given name. This strategy can be problematic because the model's predictions are based on associations rather than actual knowledge and cause concerns as mentioned in 3b.
+}
 
 \end{parts}
 

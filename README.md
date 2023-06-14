@@ -4,6 +4,10 @@ This repository contains my solutions of the assignments of the Stanford CS224N:
 
 Reading papers is an important part of this course and crucial for completing the assignments successfully. Therefore I recommend to have a look at [How to read a Paper](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf)
 
+From Assignment 2 and onwards you will need to edit latex files for your written solutions. I can recommend this [wikibook](https://en.wikibooks.org/wiki/LaTeX) as an up-to-date, comprehensive, and accessible reference. To have git integration I would use Vscode with a LateX extension as a LateX editor. For personal use, [overleaf](https://www.overleaf.com/project) might be easier and quicker to use.
+
+For now, all assignments are completed. I will continue watching the rest of the lectures and come back in September this year to try completing one of the default projects.
+
 ## My Schedule
 
 **Apr.18.2023**
@@ -90,3 +94,36 @@ Overfitting](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf)
 **Mai.12.2023**
 
 - finish [assignment 5 written](https://github.com/floriankark/cs224n-win2223/tree/main/a5_written)
+
+**Mai.13.2023**
+
+- complete [Huggingface tutorial](https://colab.research.google.com/drive/1pxc-ehTtnVM72-NViET_D2ZqOlpOi2LH?usp=sharing)
+
+**Mai.14.2023**
+
+- watch [Lecture 13](https://youtu.be/FFRnDRcbQQU) and [Lecture 14](https://youtu.be/iHWkLvoSpTg)
+- read 
+[Coreference Resolution chapter of Jurafsky and Martin]()
+[End-to-end Neural Coreference Resolution]()
+[Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer]()
+
+**Mai.15.2023**
+
+- watch [Lecture 15](https://youtu.be/y68RJVfGoto) and [Lecture 16](https://youtu.be/-Ldg4qFL6bU)
+- read 
+[ERNIE: Enhanced Language Representation with Informative Entities]()
+[Barack’s Wife Hillary: Using Knowledge Graphs for Fact-Aware Language Modeling]()
+[Pretrained Encyclopedia: Weakly Supervised Knowledge-Pretrained Language Model]()
+[Language Models as Knowledge Bases?]()
+
+**Mai.16.2023**
+
+- watch [Lecture 17](https://youtu.be/f_qmSSBWV_E) and [Lecture 18](https://youtu.be/2t7Q9WVUaf8)
+
+## Future/TODO
+
+- Write reaction paragraphs for guest speaker lectures
+- Watch ConvNets for NLP lecture and complete Assignment 5 from winter 2020 (weren't included in 2021 and onwards because they cut the exams and distributed more time towrds the final project)
+- watch the other lectures (from 2020 and 2022 that are not covered in 2021 lecture plan)
+- complete [Default Final Project: minBERT and Downstream Tasks](http://web.stanford.edu/class/cs224n/project/default-final-project-bert-handout.pdf)
+  - ressources for writing [Stanford Tips for writing Technical Papers](https://cs.stanford.edu/people/widom/paper-writing.html), [The Science of Scientific Writing](https://www.americanscientist.org/blog/the-long-view/the-science-of-scientific-writing)
