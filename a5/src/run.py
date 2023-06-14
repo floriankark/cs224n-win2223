@@ -172,13 +172,7 @@ elif args.function == 'finetune':
         )
     finetune_dataset = dataset.NameDataset(pretrain_dataset, open(args.finetune_corpus_path, encoding='utf-8').read())
 
-    if args.eval_corpus_path is not None:
-        eval_corpus = open(args.eval_corpus_path).read()
-        eval_dataset = dataset.NameDataset(pretrain_dataset, eval_corpus)
-    else:
-        eval_dataset = None
-    
-    trainer = trainer.Trainer(model, finetune_dataset, eval_dataset, trainer_config)
+    trainer = trainer.Trainer(model, finetune_dataset, None, trainer_config)
     trainer.train()
 
     torch.save(model.state_dict(), args.writing_params_path)
@@ -187,7 +181,7 @@ elif args.function == 'evaluate':
     assert args.outputs_path is not None
     assert args.reading_params_path is not None
     assert args.eval_corpus_path is not None
-    model.load_state_dict(torch.load(args.reading_params_path))
+    model.load_state_dict(torch.load(args.reading_params_path, map_location=torch.device(device)))
     correct = 0
     total = 0
     with open(args.outputs_path, 'w', encoding='utf-8') as fout:

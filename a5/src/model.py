@@ -92,9 +92,8 @@ class DownProjectBlock(nn.Module):
         ### Hint: Copy over the code from Block and make necessary modifications.
         self.ln1 = nn.LayerNorm(config.n_embd)
         self.ln2 = nn.LayerNorm(config.n_embd)
-        self.C = nn.Parameter(torch.empty(1, config.bottleneck_dim, config.n_embd))
-        nn.init.xavier_uniform_(self.C)
         self.attn = attention.CausalCrossAttention(config)
+        self.C = nn.Parameter(nn.init.xavier_uniform_(torch.empty(1, config.bottleneck_dim, config.n_embd)))
 
         self.mlp = nn.Sequential(
             nn.Linear(config.n_embd, 4 * config.n_embd),
@@ -111,7 +110,7 @@ class DownProjectBlock(nn.Module):
         ### YOUR CODE HERE
         ### Hint: Copy over the code from Block and make necessary modifications.
         ### Should be around 3-5 lines.
-        x = x_input + self.attn(self.ln1(x_input), self.ln1(self.C))
+        x = x_input + self.attn(self.ln1(self.C), self.ln1(x_input))
         x = x + self.mlp(self.ln2(x))
         return x
         ### END YOUR CODE
@@ -147,7 +146,7 @@ class UpProjectBlock(nn.Module):
         ### YOUR CODE HERE
         ### Hint: Copy over the code from Block and make necessary modifications.
         ### Should be around 3-5 lines.
-        x = y + self.attn(self.ln1(y), self.ln1(x_input))
+        x = y + self.attn(self.ln1(y), x_input)
         x = x + self.mlp(self.ln2(x))
         return x
         ### END YOUR CODE
